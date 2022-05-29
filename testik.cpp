@@ -1,6 +1,8 @@
 ﻿#include <iostream>
 #include <vector>
 #include <string>
+#include "histogram.h"
+
 using namespace std;
 
 
@@ -21,23 +23,7 @@ size_t find_max(vector<size_t> bins) {
 	return max;
 }
 
-void find_minmax(vector<double> numbers, double& min, double& max) {
 
-	min = numbers[0];
-	max = numbers[0];
-	for (double number : numbers)
-	{
-		if (min > number)
-		{
-			min = number;
-		}
-		if (max < number)
-		{
-			max = number;
-		}
-	}
-
-}
 
 vector<double> input_numbers(size_t count) {
 	vector<double> result(count);
@@ -98,8 +84,6 @@ vector <size_t> make_histogramm(vector<double> numbers, size_t bin_count) {
 		}
 
 	}
-
-
 	return  bins;
 
 }
@@ -203,16 +187,12 @@ int main()
 	double max;
 	find_minmax(numbers, min, max);
 
-
 	double bin_size = (max - min) / bin_count;
 
 	auto bins = make_histogramm(numbers, bin_count);
 	//Вывод данных
 
 	show_histogram_svg(bins);
-
-
-
 
 	return 1;
 }
