@@ -7,6 +7,52 @@
 
 using namespace std;
 
+vector<double> input_numbers(size_t count) {
+	vector<double> result(count);
+	for (size_t i = 0; i < count; i++) {
+		cin >> result[i];
+	}
+	return result;
+}
+
+void show_bin(vector<size_t> bins, const double max_bin, const double ratio) {
+
+	for (size_t i = 0; i < (max_bin * ratio); i++)
+	{
+		cout << "\t";
+		for (size_t bin : bins)
+		{
+			if (i < (bin * ratio))
+			{
+				cout << "*";
+			}
+			else
+			{
+				cout << " ";
+			}
+		}
+
+		cout << endl;
+	}
+}
+
+size_t find_max(vector<size_t> bins) {
+	size_t max;
+	if (bins.size() > 0) {
+		max = bins[0];
+
+		for (size_t bin : bins) {
+			if (max < bin) {
+				max = bin;
+			}
+		}
+	}
+	else {
+		exit(0);
+	}
+	return max;
+}
+
 
 void find_minmax( const vector<double> numbers, double& min, double& max) {
 	if (numbers.size() != 0)
@@ -25,4 +71,46 @@ void find_minmax( const vector<double> numbers, double& min, double& max) {
 			}
 		}
 	}
+}
+
+double find_ratio(size_t max_bin, const size_t bin_heght, const size_t Height, const size_t Red_line) {
+	double ratio = 1;
+	if (max_bin * bin_heght > Height - 2 * Red_line)
+	{
+		ratio = double(Height - 2 * Red_line) / ((double(bin_heght) * double(max_bin)));
+	}
+	return ratio;
+}
+
+size_t Picture_ratio(size_t max_bin, const size_t bin_heght, const size_t Height, const size_t Red_line) {
+
+	if (max_bin * bin_heght < Height - 2 * Red_line) {
+
+		return Height;
+	}
+	else {
+		return max_bin * bin_heght + 2 * Red_line;
+	}
+}
+
+size_t Width_calculate(const size_t Need) {
+
+	size_t i = 1;
+	while (Need >= pow(10, i)) {
+		i++;
+	}
+
+	return i;
+}
+
+vector<size_t> make_histogram(const vector<double>& numbers, size_t bin_count, double min, double max) {
+	vector<size_t>result(bin_count);
+	for (double number : numbers) {
+		size_t bin = (size_t)((number - min) / (max - min) * bin_count);
+		if (bin == bin_count) {
+			bin--;
+		}
+		result[bin]++;
+	}
+	return result;
 }
