@@ -7,7 +7,7 @@
 
 using namespace std;
 
-vector<double> input_numbers(size_t count) {
+vector<double> input_numbers(istream& in, size_t count) {
 	vector<double> result(count);
 	for (size_t i = 0; i < count; i++) {
 		cin >> result[i];
@@ -82,26 +82,6 @@ double find_ratio(size_t max_bin, const size_t bin_heght, const size_t Height, c
 	return ratio;
 }
 
-size_t Picture_ratio(size_t max_bin, const size_t bin_heght, const size_t Height, const size_t Red_line) {
-
-	if (max_bin * bin_heght < Height - 2 * Red_line) {
-
-		return Height;
-	}
-	else {
-		return max_bin * bin_heght + 2 * Red_line;
-	}
-}
-
-size_t Width_calculate(const size_t Need) {
-
-	size_t i = 1;
-	while (Need >= pow(10, i)) {
-		i++;
-	}
-
-	return i;
-}
 
 vector<size_t> make_histogram(const vector<double>& numbers, size_t bin_count, double min, double max) {
 	vector<size_t>result(bin_count);

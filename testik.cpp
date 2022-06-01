@@ -18,7 +18,7 @@ int main()
 
 	cerr << "Enter numbers:\n";
 
-	vector<double> numbers = input_numbers(number_count);
+	vector<double> numbers = input_numbers(cin, number_count);
 
 	size_t bin_count;
 

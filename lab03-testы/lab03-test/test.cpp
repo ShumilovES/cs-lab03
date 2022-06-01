@@ -1,5 +1,5 @@
 #include "C:\Users\Наталья\Desktop\lab03\lab03\histogram.h"
-
+#include "C:\Users\Наталья\Desktop\lab03\lab03\svg.h"
 #include <cassert>
 
 void test_positive() {
@@ -46,10 +46,25 @@ void test_empty_vector()
     assert(max == 3);
 }
 
+void test_without_ratio() {
+    double ratio = 1;
+
+    find_ratio(4, 10, 100, 10);
+    assert(ratio == 1);
+
+}
+void test_with_ratio() {
+    double ratio = find_ratio(10, 10, 100, 10);
+
+    assert(ratio != 1);
+
+}
 int main() {
     test_positive();
     test_negative();
     test_one_number();
     test_same_numbers();
     test_empty_vector();
+    test_without_ratio();
+    test_with_ratio();
 }

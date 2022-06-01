@@ -5,7 +5,7 @@
 #include "histogram.h"
 
 
-void svg_begin(double width = 400, double height = 300);
+void svg_begin(double width, double height);
 
 void svg_end();
 
