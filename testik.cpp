@@ -7,32 +7,46 @@
 using namespace std;
 
 
+
+Input read_input(istream& in, bool prompt) {
+	Input data;
+
+	if (prompt)
+	{
+		cerr << "Enter number count: ";
+	}
+	size_t number_count;
+	in >> number_count;
+	if (prompt)
+	{
+		cerr << "Enter numbers: ";
+	}
+
+	data.numbers = input_numbers(in, number_count);
+	if (prompt)
+	{
+		cerr << "Enter bin_count: \n";
+	}
+
+	size_t bin_count;
+	in >> data.bin_count;
+
+	return data;
+}
 int main()
 {
 	//Ввод данных
-	const size_t maximum_asterisks_in_bin = 80;
-
-	size_t number_count;
-	cerr << "enter number_count: ";
-	cin >> number_count;
-
-	cerr << "Enter numbers:\n";
-
-	vector<double> numbers = input_numbers(cin, number_count);
-
-	size_t bin_count;
-
-	cerr << "Enter bin_count: \n";
-	cin >> bin_count;
+	
+	const auto input = read_input(cin, true);
 
 	// Расчеты
 
 	double min;
 	double max;
-	find_minmax(numbers, min, max);
+	find_minmax(input.numbers, min, max);
 
-	double bin_size = (max - min) / bin_count;
-	const auto bins = make_histogram(numbers, bin_count, min, max);
+
+	const auto bins = make_histogram(input.numbers, input.bin_count, min, max);
 	//Вывод данных
 
 	show_histogram_svg(bins);
