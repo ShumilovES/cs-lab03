@@ -10,6 +10,8 @@ struct Input {
 	size_t bin_count;
 };
 
+Input read_input(istream& in, bool prompt);
+
 vector<double> input_numbers(istream& in, size_t count);
 
 void show_bin(vector<size_t> bins, const double max_bin, const double ratio);

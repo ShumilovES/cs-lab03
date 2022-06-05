@@ -3,38 +3,14 @@
 #include <string>
 #include "histogram.h"
 #include "svg.h"
+#include <curl/curl.h>
 
 using namespace std;
 
 
-
-Input read_input(istream& in, bool prompt) {
-	Input data;
-
-	if (prompt)
-	{
-		cerr << "Enter number count: ";
-	}
-	size_t number_count;
-	in >> number_count;
-	if (prompt)
-	{
-		cerr << "Enter numbers: ";
-	}
-
-	data.numbers = input_numbers(in, number_count);
-	if (prompt)
-	{
-		cerr << "Enter bin_count: \n";
-	}
-
-	size_t bin_count;
-	in >> data.bin_count;
-
-	return data;
-}
-int main()
+int main(int argc, char* argv[])
 {
+	curl_global_init(CURL_GLOBAL_ALL);
 	//Ввод данных
 	
 	const auto input = read_input(cin, true);
