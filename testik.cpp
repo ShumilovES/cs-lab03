@@ -10,13 +10,16 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+	CURL* curl = curl_easy_init();
 	if (argc > 1)
 	{
 		cerr << "argc = " << argc << endl;
+		
 		for (size_t i = 0; i < argc; i++)
 		{
 			cerr << "argv[" << i << "] = " << argv[i] << '\n';
 		}
+		curl_easy_cleanup(curl);
 		return 0;
 	}
 
