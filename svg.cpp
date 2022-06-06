@@ -54,3 +54,10 @@ void show_histogram_svg(const vector<size_t>&bins) {
         svg_end();
     }
 
+string make_info_text() {
+    stringstream buffer;
+    int year = 2022;
+    buffer << "(c) " << year << " Egor Shumilov";
+    return buffer.str();
+}
+

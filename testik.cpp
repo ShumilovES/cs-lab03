@@ -4,37 +4,25 @@
 #include "histogram.h"
 #include "svg.h"
 #include <curl/curl.h>
+#include <sstream>
+#define CURL_STATICLIB
 
 using namespace std;
 
 
 int main(int argc, char* argv[])
 {
+	Input input;
 	if (argc > 1)
 	{
-		CURL* curl = curl_easy_init();
-
-		if (curl)
-		{
-			CURLcode res;
-			curl_easy_setopt(curl, CURLOPT_URL, argv[1]);
-			res = curl_easy_perform(curl);
-			curl_easy_cleanup(curl);
-			if (res)
-			{
-				cerr << curl_easy_strerror(res) << endl;
-				exit(1);
-			}
-		}
-		return 0;
+		input = download(argv[1], argc, argv);
+	}
+	else
+	{
+		input = read_input(cin, true);
 	}
 
-	curl_global_init(CURL_GLOBAL_ALL);
-
 	//Ввод данных
-	
-	const auto input = read_input(cin, true);
-
 	// Расчеты
 
 	double min;

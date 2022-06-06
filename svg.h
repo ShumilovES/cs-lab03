@@ -3,6 +3,10 @@
 #include <vector>
 #include <string>
 #include "histogram.h"
+#include <curl/curl.h>
+#include <sstream>
+#define CURL_STATICLIB
+
 
 
 void svg_begin(double width, double height);
@@ -17,3 +21,4 @@ void make_histogramm_on_svg(double ratio, const vector<size_t>& bins);
 
 void show_histogram_svg(const vector<size_t>& bins);
 
+string make_info_text();

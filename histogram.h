@@ -2,13 +2,23 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <curl/curl.h>
+#include <sstream>
+#define CURL_STATICLIB
+
 
 using namespace std;
 
 struct Input {
 	vector<double> numbers;
-	size_t bin_count;
+	size_t bin_count = 0;
 };
+
+void ver(int argc, char** argv, CURL* curl);
+
+Input download(const string& address, int argc, char** argv);
+
+size_t write_data(void* items, size_t item_size, size_t item_count, void* ctx);
 
 Input read_input(istream& in, bool prompt);
 
